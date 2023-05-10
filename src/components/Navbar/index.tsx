@@ -1,7 +1,14 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Transition } from "@headlessui/react";
+
+// Components
+import Button from "@/components/shared/Button";
+
+// Assets
+import BananaImg from "@/../public/banana.svg";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,14 +17,12 @@ export default function Navbar() {
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center  w-full">
-            <div className="flex-shrink-0">
-              <img
-                className="h-8 w-8"
-                src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                alt="Workflow"
-              />
+            <div className="flex-shrink-0 h-8 w-8">
+              <Link href="/">
+                <Image src={BananaImg} alt="ape logo" />
+              </Link>
             </div>
-            <div className="hidden md:block w-full">
+            <div className="hidden md:block">
               <div className="ml-10 flex items-baseline">
                 <div className="space-x-4">
                   <Link
@@ -34,10 +39,23 @@ export default function Navbar() {
                     Token Balances
                   </Link>
                 </div>
-                <div className="text-white text-sm font-medium mr-0 ml-auto">
-                  Right side btns go here
-                </div>
               </div>
+            </div>
+            <div className="flex mr-0 ml-auto space-x-2 sm:mr-2">
+              <div className="hidden md:block">
+                <Button
+                  colorScheme="secondary"
+                  size="sm"
+                  fontWeight="medium"
+                  label="Chain name"
+                />
+              </div>
+              <Button
+                colorScheme="primary"
+                size="sm"
+                fontWeight="medium"
+                label="Connect"
+              />
             </div>
           </div>
           <div className="-mr-2 flex md:hidden">
@@ -112,6 +130,12 @@ export default function Navbar() {
               >
                 Token Balances
               </Link>
+              <Button
+                colorScheme="secondary"
+                size="sm"
+                fontWeight="medium"
+                label="Chain name"
+              />
             </div>
           </div>
         )}
