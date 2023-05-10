@@ -46,6 +46,7 @@ export default function Button({
 
   return (
     <button
+      type="button"
       className={`${BASE_BUTTON_CLASSES} ${buttonClasses}`}
       onClick={onClick}
     >

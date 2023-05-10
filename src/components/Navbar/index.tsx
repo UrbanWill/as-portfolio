@@ -6,12 +6,14 @@ import { Transition } from "@headlessui/react";
 
 // Components
 import Button from "@/components/shared/Button";
+import WalletConnectModal from "@/components/WalletConnectModal";
 
 // Assets
 import BananaImg from "@/../public/banana.svg";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <nav className="bg-gray-800">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,6 +57,7 @@ export default function Navbar() {
                 size="sm"
                 fontWeight="medium"
                 label="Connect"
+                onClick={() => setIsModalOpen((prev) => !prev)}
               />
             </div>
           </div>
@@ -140,6 +143,12 @@ export default function Navbar() {
           </div>
         )}
       </Transition>
+      <WalletConnectModal
+        colorScheme="dark"
+        isOpen={isModalOpen}
+        setIsOpen={() => setIsModalOpen((prev) => !prev)}
+        title={"Connect wallet"}
+      />
     </nav>
   );
 }
