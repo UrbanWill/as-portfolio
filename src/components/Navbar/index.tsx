@@ -7,26 +7,31 @@ import { Transition } from "@headlessui/react";
 // Components
 import Button from "@/components/shared/Button";
 import WalletConnectModal from "@/components/WalletConnectModal";
-import WalletDisconnectModal from "../WalletDisconnectModal";
+import WalletDisconnectModal from "@/components/WalletDisconnectModal";
+import SwitchChainModal from "@/components/SwitchChainModal";
 
 // Connectors
 import { metaMask, hooks } from "@/connectors/metamask";
+
+// Constants
+import { CHAINS } from "@/utils/chains";
 
 // Assets
 import BananaImg from "@/../public/banana.svg";
 
 export default function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isConnectModalOpen, setIsConnectModalOpen] = useState(false);
   const [isDisconnectModalOpen, setIsDisconnectModalOpen] = useState(false);
+  const [isSwitchCainModalOpen, setIsSwitchCainModalOpen] = useState(false);
 
-  const {
-    useIsActive,
-    // useChainId,
-    useAccounts,
-  } = hooks;
+  const { useIsActive, useChainId, useAccounts } = hooks;
 
   const isActive = useIsActive();
+  const chainId = useChainId();
   const accounts = useAccounts();
+
+  const chainName = CHAINS[chainId ?? 0]?.name ?? "Unsupported Chain";
 
   // attempt to connect eagerly on mount
   useEffect(() => {
@@ -64,14 +69,17 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
-            <div className="flex mr-0 ml-auto space-x-2 sm:mr-2">
+            <div className="flex mr-0 ml-auto space-x-2 mr-2 sm:mr-0">
               <div className="hidden md:block">
-                <Button
-                  colorScheme="secondary"
-                  size="sm"
-                  fontWeight="medium"
-                  label="Chain name"
-                />
+                {isActive && (
+                  <Button
+                    colorScheme="secondary"
+                    size="sm"
+                    fontWeight="medium"
+                    label={chainName}
+                    onClick={() => setIsSwitchCainModalOpen((prev) => !prev)}
+                  />
+                )}
               </div>
               {isActive && accounts?.length ? (
                 <Button
@@ -95,14 +103,14 @@ export default function Navbar() {
           </div>
           <div className="-mr-2 flex md:hidden">
             <button
-              onClick={(prev) => setIsConnectModalOpen(!prev)}
+              onClick={() => setIsMenuOpen((prev) => !prev)}
               type="button"
               className="bg-gray-900 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
               aria-controls="mobile-menu"
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
-              {!isConnectModalOpen ? (
+              {!isMenuOpen ? (
                 <svg
                   className="block h-6 w-6"
                   xmlns="http://www.w3.org/2000/svg"
@@ -141,7 +149,7 @@ export default function Navbar() {
       </div>
 
       <Transition
-        show={isConnectModalOpen}
+        show={isMenuOpen}
         enter="transition ease-out duration-100 transform"
         enterFrom="opacity-0 scale-95"
         enterTo="opacity-100 scale-100"
@@ -187,6 +195,12 @@ export default function Navbar() {
         setIsOpen={() => setIsDisconnectModalOpen((prev) => !prev)}
         title={"Your Wallet"}
         walletAddress={accounts?.length ? accounts[0] : ""}
+      />
+      <SwitchChainModal
+        colorScheme="dark"
+        isOpen={isSwitchCainModalOpen}
+        setIsOpen={() => setIsSwitchCainModalOpen((prev) => !prev)}
+        title={"Switch Network"}
       />
     </nav>
   );

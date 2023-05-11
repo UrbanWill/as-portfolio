@@ -6,6 +6,12 @@ const ETH: AddEthereumChainParameter["nativeCurrency"] = {
   decimals: 18,
 };
 
+const BNB: AddEthereumChainParameter["nativeCurrency"] = {
+  name: "Bnb",
+  symbol: "BNB",
+  decimals: 18,
+};
+
 const MATIC: AddEthereumChainParameter["nativeCurrency"] = {
   name: "Matic",
   symbol: "MATIC",
@@ -45,46 +51,33 @@ export function getAddChainParameters(
   }
 }
 
-const getInfuraUrlFor = (network: string) =>
-  process.env.infuraKey
-    ? `https://${network}.infura.io/v3/${process.env.infuraKey}`
-    : undefined;
-const getAlchemyUrlFor = (network: string) =>
-  process.env.alchemyKey
-    ? `https://${network}.alchemyapi.io/v2/${process.env.alchemyKey}`
-    : undefined;
-
 type ChainConfig = {
   [chainId: number]: BasicChainInformation | ExtendedChainInformation;
 };
 
-// TODO: Add BNB and BNB Testnet
 export const MAINNET_CHAINS: ChainConfig = {
   1: {
-    // @ts-ignore
+    urls: ["https://cloudflare-eth.com"].filter(Boolean),
+    name: "Ethereum",
+  },
+  56: {
     urls: [
-      getInfuraUrlFor("mainnet"),
-      getAlchemyUrlFor("eth-mainnet"),
-      "https://cloudflare-eth.com",
-    ].filter(Boolean),
-    name: "Mainnet",
+      "https://bsc-dataseed1.ninicoin.io",
+      "https://bsc-dataseed.binance.org/",
+      "https://bsc-dataseed1.defibit.io",
+    ],
+    name: "Binance Smart Chain",
+    nativeCurrency: BNB,
+    blockExplorerUrls: ["https://bscscan.com"],
   },
   137: {
-    // @ts-ignore
-    urls: [
-      getInfuraUrlFor("polygon-mainnet"),
-      "https://polygon-rpc.com",
-    ].filter(Boolean),
-    name: "Polygon Mainnet",
+    urls: ["https://polygon-rpc.com"],
+    name: "Polygon",
     nativeCurrency: MATIC,
     blockExplorerUrls: ["https://polygonscan.com"],
   },
   42161: {
-    // @ts-ignore
-    urls: [
-      getInfuraUrlFor("arbitrum-mainnet"),
-      "https://arb1.arbitrum.io/rpc",
-    ].filter(Boolean),
+    urls: ["https://arb1.arbitrum.io/rpc"],
     name: "Arbitrum One",
     nativeCurrency: ETH,
     blockExplorerUrls: ["https://arbiscan.io"],
@@ -93,11 +86,16 @@ export const MAINNET_CHAINS: ChainConfig = {
 
 export const TESTNET_CHAINS: ChainConfig = {
   80001: {
-    // @ts-ignore
-    urls: [getInfuraUrlFor("polygon-mumbai")].filter(Boolean),
+    urls: ["https://matic-mumbai.chainstacklabs.com"],
     name: "Polygon Mumbai",
     nativeCurrency: MATIC,
     blockExplorerUrls: ["https://mumbai.polygonscan.com"],
+  },
+  97: {
+    urls: ["https://data-seed-prebsc-2-s3.binance.org:8545/"],
+    name: "Binance Smart Chain Testnet",
+    nativeCurrency: BNB,
+    blockExplorerUrls: ["https://testnet.bscscan.com/"],
   },
 };
 

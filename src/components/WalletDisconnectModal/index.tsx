@@ -34,7 +34,7 @@ export default function WalletDisconnectModal({
       setIsOpen={setIsOpen}
       title={title}
       body={
-        <div className="flex flex-col spacing-y-4">
+        <div className="flex flex-col space-y-4">
           <div>{walletAddress}</div>
           <div>Are you sure you want to disconnect?</div>
         </div>
