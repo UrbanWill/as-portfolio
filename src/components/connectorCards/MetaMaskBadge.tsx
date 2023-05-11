@@ -1,5 +1,5 @@
 // Hooks
-import useSwitchChain from "@/useSwitchChain";
+import useSwitchChain from "@/hooks/useSwitchChain";
 
 // Components
 import Badge from "@/components/shared/Badge";

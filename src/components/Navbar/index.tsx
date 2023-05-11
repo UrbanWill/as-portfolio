@@ -14,7 +14,7 @@ import SwitchChainModal from "@/components/SwitchChainModal";
 import { metaMask, hooks } from "@/connectors/metamask";
 
 // Constants
-import { CHAINS } from "@/utils/chains";
+import { CHAINS } from "@/constants/chains";
 
 // Assets
 import BananaImg from "@/../public/banana.svg";

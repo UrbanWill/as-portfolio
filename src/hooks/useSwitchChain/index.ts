@@ -2,7 +2,7 @@
 import { metaMask } from "@/connectors/metamask";
 
 // Utils
-import { getAddChainParameters } from "@/utils/chains";
+import { getAddChainParameters } from "@/constants/chains";
 
 /**
  * Hardcoded metamask connector because that's the only one we're using

@@ -7,7 +7,7 @@ import Modal from "@/components/shared/Modal";
 import Badge from "@/components/shared/Badge";
 
 // Constants
-import { CHAINS, URLS } from "@/utils/chains";
+import { CHAINS, URLS } from "@/constants/chains";
 
 // Types
 import { ModalProps } from "@/components/shared/Modal";
