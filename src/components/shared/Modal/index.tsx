@@ -90,9 +90,9 @@ export default function Modal({
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
               <Dialog.Panel
-                className={`${colorSchemes[colorScheme].body} ${sizes[size]} relative transform overflow-hidden rounded-lg text-left shadow-xl transition-all sm:my-8 flex flex-col `}
+                className={`${colorSchemes[colorScheme].body} ${sizes[size]} relative transform overflow-hidden sm:rounded-lg text-left shadow-xl transition-all sm:my-8 flex flex-col`}
               >
-                <div className={` px-4 pb-4 pt-5 sm:p-6 sm:pb-4 flex flex-col`}>
+                <div className={`px-4 pb-4 pt-5 sm:p-6 sm:pb-4 flex flex-col`}>
                   <button
                     type="button"
                     className="mr-0 ml-auto px-3 py-2 h-9 w-9"

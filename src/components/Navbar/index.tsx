@@ -69,7 +69,7 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
-            <div className="flex mr-0 ml-auto space-x-2 mr-2 sm:mr-0">
+            <div className="flex mr-0 ml-auto space-x-2 mr-2 md:mr-0">
               <div className="hidden md:block">
                 {isActive && (
                   <Button
@@ -173,12 +173,15 @@ export default function Navbar() {
               >
                 Token Balances
               </Link>
-              <Button
-                colorScheme="secondary"
-                size="sm"
-                fontWeight="medium"
-                label="Chain name"
-              />
+              {isActive && (
+                <Button
+                  colorScheme="secondary"
+                  size="sm"
+                  fontWeight="medium"
+                  label={chainName}
+                  onClick={() => setIsSwitchCainModalOpen((prev) => !prev)}
+                />
+              )}
             </div>
           </div>
         )}
