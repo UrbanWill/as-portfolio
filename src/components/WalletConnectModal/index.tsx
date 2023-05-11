@@ -1,6 +1,7 @@
 // Components
 import Modal from "@/components/shared/Modal";
 import Badge from "@/components/shared/Badge";
+import MetaMaskBadge from "../connectorCards/MetaMaskBadge";
 
 // Types
 import { ModalProps } from "@/components/shared/Modal";
@@ -13,7 +14,7 @@ export default function WalletConnectModal({
 }: ModalProps) {
   const modalBody = (
     <div className="w-100 flex flex-col space-y-3 sm:space-y-0 sm:flex-row sm:justify-between">
-      <Badge>Metamask</Badge>
+      <MetaMaskBadge setIsOpen={setIsOpen} />
       <Badge>Option 2</Badge>
       <Badge>Option 3</Badge>
     </div>

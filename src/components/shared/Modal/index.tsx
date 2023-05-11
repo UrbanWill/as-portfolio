@@ -6,19 +6,25 @@ import Image from "next/image";
 import IconCloseDark from "../../../../public/icon-close-dark.svg";
 import IconCloseLight from "../../../../public/icon-close-light.svg";
 
-type colorScheme = "dark" | "light";
 type size = "auto" | "full";
+type colorScheme = "dark" | "light";
 
-type colorSchemeTypes = {
-  [key in colorScheme]: { body: string; footer: string; icon: string };
-};
+interface ColorScheme {
+  body: string;
+  footer: string;
+  icon: string;
+}
+
+type ColorSchemeType = "dark" | "light";
+
+type ColorSchemeMap = Record<ColorSchemeType, ColorScheme>;
 
 const sizes = {
   auto: "sm:w-full sm:h-full sm:max-w-lg h-screen w-full",
   full: "h-screen w-full",
 };
 
-const colorSchemes: colorSchemeTypes = {
+const colorSchemes: ColorSchemeMap = {
   light: {
     body: "bg-white text-gray-800",
     footer: "bg-gray-50",
@@ -99,7 +105,7 @@ export default function Modal({
                     />
                   </button>
                   <div className="sm:flex sm:items-start">
-                    <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
+                    <div className="mt-3 text-center sm:mt-0 sm:text-left w-full">
                       <Dialog.Title
                         as="h3"
                         className="text-base font-semibold leading-6"
