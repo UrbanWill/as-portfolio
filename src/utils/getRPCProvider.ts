@@ -3,14 +3,15 @@ import { ethers } from "ethers";
 // Constants
 import { ChainId } from "@/constants/chains";
 
-// TODO: Add RPC urls for other chains
+const INFURA_PROJECT_ID = process.env.NEXT_PUBLIC_INFURA_PROJECT_ID;
+
 const providerUrls: Record<ChainId, string> = {
-  [ChainId.MAINNET]: "",
+  [ChainId.MAINNET]: `https://mainnet.infura.io/v3/${INFURA_PROJECT_ID}`,
   [ChainId.BSC]: "https://bsc-dataseed2.binance.org/",
-  [ChainId.POLYGON]: "",
-  [ChainId.ARBITRUM]: "",
-  [ChainId.MATIC_MUMBAI]: "",
-  [ChainId.BSC_TESTNET]: "",
+  [ChainId.POLYGON]: `https://polygon-mainnet.infura.io/v3/${INFURA_PROJECT_ID}`,
+  [ChainId.ARBITRUM]: `https://arbitrum-mainnet.infura.io/v3/${INFURA_PROJECT_ID}`,
+  [ChainId.MATIC_MUMBAI]: `https://polygon-mumbai.infura.io/v3/${INFURA_PROJECT_ID}`,
+  [ChainId.BSC_TESTNET]: "https://data-seed-prebsc-1-s1.binance.org:8545/",
 };
 
 const providers: Record<number, ethers.providers.JsonRpcProvider> = {};

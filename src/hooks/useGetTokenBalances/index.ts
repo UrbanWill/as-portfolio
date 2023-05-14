@@ -46,8 +46,10 @@ export default function useGetTokenBalances({
   const callContractContext = getCallContractContext({
     isNFTIndex,
     chainId: queryChainId!,
-    walletAddress: "0x713e2d6ac290749bca9fffc6ba60c72c014fa210", // Keep this address here for testing
-    // walletAddress: currentAccount,
+    // walletAddress: "0x713e2d6ac290749bca9fffc6ba60c72c014fa210", // Keep this address here for testing in BNB mainnet
+    // walletAddress: "0x19b780189f44238e0591abfa9114fb011e977f86", // Keep this address here for testing BNB testnet
+    // walletAddress: "0xb3cbeff0336baa4863cb51238bd6c35bdaab3d84", // Keep this address here for testing in Arbitrum mainnet
+    walletAddress: currentAccount,
   });
 
   const { data, isLoading } = useQuery({

@@ -2,9 +2,13 @@
 
 // Hooks
 import useGetTokenBalances from "@/hooks/useGetTokenBalances";
+import { hooks } from "@/connectors/metamask";
 
 export default function TokenIndexes() {
   const { isLoading, data } = useGetTokenBalances({ isNFTIndex: true });
+  const { useIsActive } = hooks;
+
+  const isActive = useIsActive();
 
   const NFTIndexes = data?.tokenBalances.map((token) => {
     return (
@@ -15,10 +19,14 @@ export default function TokenIndexes() {
     );
   });
 
+  const getBody = () => {
+    return isLoading ? <p>Loading...</p> : NFTIndexes;
+  };
+
   return (
     <main className="flex justify-center flex-col">
       <h1 className="font-bold text-2xl">Nfts Indexes Balances</h1>
-      {isLoading ? <p>Loading...</p> : NFTIndexes}
+      {isActive ? getBody() : <p>Connect to Metamask</p>}
     </main>
   );
 }
