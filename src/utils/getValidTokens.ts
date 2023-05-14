@@ -8,6 +8,7 @@ interface GetValidTokens {
   isNFTIndex: boolean;
 }
 
+// Helper function to get valid tokens for a given chain
 export default function getValidTokens({
   isNFTIndex,
   chainId,

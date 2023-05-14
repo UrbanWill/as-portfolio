@@ -4,6 +4,7 @@ import getRPCProvider from "@/utils/getRPCProvider";
 // Constants
 import { ChainId } from "@/constants/chains";
 
+// Types
 import { Multicall } from "ethereum-multicall";
 
 const multicalls: Record<number, Multicall> = {};
