@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import type { AddEthereumChainParameter } from "@web3-react/types";
 
 const ETH: AddEthereumChainParameter["nativeCurrency"] = {
@@ -55,12 +56,21 @@ type ChainConfig = {
   [chainId: number]: BasicChainInformation | ExtendedChainInformation;
 };
 
+export enum ChainId {
+  MAINNET = 1,
+  BSC = 56,
+  POLYGON = 137,
+  ARBITRUM = 42161,
+  MATIC_MUMBAI = 80001,
+  BSC_TESTNET = 97,
+}
+
 export const MAINNET_CHAINS: ChainConfig = {
-  1: {
+  [ChainId.MAINNET]: {
     urls: ["https://cloudflare-eth.com"].filter(Boolean),
     name: "Ethereum",
   },
-  56: {
+  [ChainId.BSC]: {
     urls: [
       "https://bsc-dataseed1.ninicoin.io",
       "https://bsc-dataseed.binance.org/",
@@ -70,13 +80,13 @@ export const MAINNET_CHAINS: ChainConfig = {
     nativeCurrency: BNB,
     blockExplorerUrls: ["https://bscscan.com"],
   },
-  137: {
+  [ChainId.POLYGON]: {
     urls: ["https://polygon-rpc.com"],
     name: "Polygon",
     nativeCurrency: MATIC,
     blockExplorerUrls: ["https://polygonscan.com"],
   },
-  42161: {
+  [ChainId.ARBITRUM]: {
     urls: ["https://arb1.arbitrum.io/rpc"],
     name: "Arbitrum One",
     nativeCurrency: ETH,
@@ -85,13 +95,13 @@ export const MAINNET_CHAINS: ChainConfig = {
 };
 
 export const TESTNET_CHAINS: ChainConfig = {
-  80001: {
+  [ChainId.MATIC_MUMBAI]: {
     urls: ["https://matic-mumbai.chainstacklabs.com"],
     name: "Polygon Mumbai",
     nativeCurrency: MATIC,
     blockExplorerUrls: ["https://mumbai.polygonscan.com"],
   },
-  97: {
+  [ChainId.BSC_TESTNET]: {
     urls: ["https://data-seed-prebsc-2-s3.binance.org:8545/"],
     name: "Binance Smart Chain Testnet",
     nativeCurrency: BNB,

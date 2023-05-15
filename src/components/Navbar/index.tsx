@@ -66,6 +66,13 @@ export default function Navbar() {
                   >
                     Token Balances
                   </Link>
+
+                  <Link
+                    className="hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium"
+                    href="/nftsIndexes"
+                  >
+                    Nfts Indexes
+                  </Link>
                 </div>
               </div>
             </div>
@@ -173,6 +180,14 @@ export default function Navbar() {
               >
                 Token Balances
               </Link>
+
+              <Link
+                className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
+                href="/nftsIndexes"
+              >
+                Nfts Indexes
+              </Link>
+
               {isActive && (
                 <Button
                   colorScheme="secondary"
