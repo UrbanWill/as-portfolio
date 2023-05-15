@@ -15,7 +15,9 @@ export default function Balances() {
 
   return (
     <main className="flex justify-center flex-col">
-      <h1 className="font-bold text-2xl">Tokens Balances</h1>
+      <h1 className="font-bold text-2xl text-center my-6 sm:my-12">
+        Tokens Balances
+      </h1>
       {isActive ? (
         <TokenTable isLoading={isLoading} data={data?.tokenBalances ?? []} />
       ) : (
