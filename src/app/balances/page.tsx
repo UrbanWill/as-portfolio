@@ -1,14 +1,14 @@
 "use client";
 
 // Hooks
-import useGetTokenBalances from "@/hooks/useGetTokenBalances";
+import useGetAllTokenBalances from "@/hooks/useGetAllTokenBalances";
 import { hooks } from "@/connectors/metamask";
 
 // Components
 import TokenTable from "@/components/TokenTable";
 
 export default function Balances() {
-  const { isLoading, data } = useGetTokenBalances({ isNFTIndex: false });
+  const { isLoading, data } = useGetAllTokenBalances();
   const { useIsActive } = hooks;
 
   const isActive = useIsActive();
@@ -19,7 +19,7 @@ export default function Balances() {
         Tokens Balances
       </h1>
       {isActive ? (
-        <TokenTable isLoading={isLoading} data={data?.tokenBalances ?? []} />
+        <TokenTable isLoading={isLoading} data={data ?? []} />
       ) : (
         <p className="text-lg font-bold">Connect to Metamask</p>
       )}

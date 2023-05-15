@@ -1,10 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { ContractCallResults, ContractCallContext } from "ethereum-multicall";
 
 // Utils
-import getMultiCall from "@/utils/getMultiCall";
-import getCallContractContext from "./getCallContractContext";
-import getParsedTokenValues from "./getParsedTokenBalances";
+import fetchTokenBalances from "@/utils/fetchTokenBalances";
+import getCallContractContext from "../../utils/getCallContractContext";
+import getParsedTokenValues from "../../utils/getParsedTokenBalances";
 
 // Connectors
 import { hooks } from "@/connectors/metamask";
@@ -12,25 +11,14 @@ import { hooks } from "@/connectors/metamask";
 // Constants
 import { ChainId } from "@/constants/chains";
 
-// Helper function to get token balances using multicall
-const fetchTokenBalances = async ({
-  chainId,
-  callContractContext,
-}: {
-  chainId: ChainId;
-  callContractContext: ContractCallContext[];
-}): Promise<ContractCallResults> => {
-  const multicall = getMultiCall(chainId);
-  const results: ContractCallResults = await multicall.call(
-    callContractContext
-  );
-  return results;
-};
-
 interface UseGetTokenBalances {
   isNFTIndex?: boolean;
 }
 
+/**
+ * NOTE: This hook was originally developed to fetch all token balances for the current connected chain or NFTIndexes list on BSC
+ * I am keeping this functionality here because it can be useful in the future and it is a legit use case, though not being used in the app
+ */
 export default function useGetTokenBalances({
   isNFTIndex = false,
 }: UseGetTokenBalances) {
@@ -61,5 +49,12 @@ export default function useGetTokenBalances({
     cacheTime: 1000 * 60,
   });
 
-  return { isLoading, data: data ? getParsedTokenValues(data) : null };
+  return {
+    isLoading,
+    data: data
+      ? getParsedTokenValues(data).sort(
+          (a, b) => Number(b.tokenBalance) - Number(a.tokenBalance)
+        )
+      : null,
+  };
 }

@@ -19,7 +19,7 @@ export default function TokenIndexes() {
         Nfts Indexes Balances
       </h1>
       {isActive ? (
-        <TokenTable isLoading={isLoading} data={data?.tokenBalances ?? []} />
+        <TokenTable isLoading={isLoading} data={data ?? []} />
       ) : (
         <p className="text-lg font-bold">Connect to Metamask</p>
       )}
