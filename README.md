@@ -13,6 +13,9 @@ Deployed version: https://as-portfolio-zeta.vercel.app/
 - `react-query` Used to create custom fetch hooks, cache data on the client side and refech data when cache is stale
 - `react-table` is being used in conjunction with `react-virtual` to crate reusable, agnostic and headless tables that perform well, reduce the amount of re-renders and can render thousands of rows smoothly.
 
+## Lo-fi design:
+![ApeSwap-lofi-1x](https://github.com/UrbanWill/as-portfolio/assets/47801291/04d9b26a-00d6-42fb-9d67-d496a88d8826)
+
 ## Getting Started
 
 - Clone the repo
