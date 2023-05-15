@@ -21,7 +21,7 @@ export default function Balances() {
       {isActive ? (
         <TokenTable isLoading={isLoading} data={data?.tokenBalances ?? []} />
       ) : (
-        <p>Connect to Metamask</p>
+        <p className="text-lg font-bold">Connect to Metamask</p>
       )}
     </main>
   );

@@ -5,7 +5,8 @@ import useSwitchChain from "@/hooks/useSwitchChain";
 import Badge from "@/components/shared/Badge";
 
 // Constants
-const MATIC_CHAIN_ID = 137;
+import { META_MASK_DEEP_LINK } from "@/constants";
+import { ChainId } from "@/constants/chains";
 
 interface MetaMaskBadgeProps {
   setIsOpen: () => void;
@@ -15,16 +16,24 @@ export default function MetaMaskBadge({ setIsOpen }: MetaMaskBadgeProps) {
   const { switchChain } = useSwitchChain();
 
   const handleConnect = () => {
-    switchChain(MATIC_CHAIN_ID).then(() => {
+    switchChain(ChainId.MATIC).then(() => {
       setIsOpen();
     });
   };
 
-  return (
+  const connectButton = (
     <Badge>
       <button type="button" onClick={handleConnect}>
         Metamask
       </button>
     </Badge>
+  );
+
+  return !window.ethereum ? (
+    <a href={META_MASK_DEEP_LINK} target="blank">
+      {connectButton}
+    </a>
+  ) : (
+    connectButton
   );
 }

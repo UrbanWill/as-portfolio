@@ -59,7 +59,7 @@ type ChainConfig = {
 export enum ChainId {
   MAINNET = 1,
   BSC = 56,
-  POLYGON = 137,
+  MATIC = 137,
   ARBITRUM = 42161,
   MATIC_MUMBAI = 80001,
   BSC_TESTNET = 97,
@@ -80,7 +80,7 @@ export const MAINNET_CHAINS: ChainConfig = {
     nativeCurrency: BNB,
     blockExplorerUrls: ["https://bscscan.com"],
   },
-  [ChainId.POLYGON]: {
+  [ChainId.MATIC]: {
     urls: ["https://polygon-rpc.com"],
     name: "Polygon",
     nativeCurrency: MATIC,

@@ -15,8 +15,12 @@ export default function WalletConnectModal({
   const modalBody = (
     <div className="w-100 flex flex-col space-y-3 sm:space-y-0 sm:flex-row sm:justify-between">
       <MetaMaskBadge setIsOpen={setIsOpen} />
-      <Badge>Option 2</Badge>
-      <Badge>Option 3</Badge>
+      <div className="cursor-not-allowed">
+        <Badge isDisabled>Option 2</Badge>
+      </div>
+      <div className="cursor-not-allowed">
+        <Badge isDisabled>Option 3</Badge>
+      </div>
     </div>
   );
 
