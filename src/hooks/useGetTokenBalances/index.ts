@@ -50,7 +50,7 @@ export default function useGetTokenBalances({
   });
 
   const { data, isLoading } = useQuery({
-    queryKey: [queryChainId, currentAccount],
+    queryKey: [queryChainId, currentAccount, { isNFTIndex }],
     queryFn: () =>
       fetchTokenBalances({ chainId: queryChainId!, callContractContext }),
     enabled: !!queryChainId && isActive,
