@@ -22,11 +22,9 @@ export default function MetaMaskBadge({ setIsOpen }: MetaMaskBadgeProps) {
   };
 
   const connectButton = (
-    <Badge>
-      <button type="button" onClick={handleConnect}>
-        Metamask
-      </button>
-    </Badge>
+    <button type="button" onClick={handleConnect}>
+      <Badge>Metamask</Badge>
+    </button>
   );
 
   return !window.ethereum ? (
