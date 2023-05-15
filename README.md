@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Ape Swap Portfolio
+
+A small portfolio page for users to display token balances from token lists. 
+Upon logging in, users can access a concise portfolio page that showcases their token balances across multiple supported chains. This page allows users to easily display their token holdings from various token lists associated with their connected wallet.
+
+Proposed work scope on [Notion](https://www.notion.so/Ape-Swap-Challange-Scope-7a62c8b680f34df9a81cda0ba0b61de0).
+
+Deployed version: https://as-portfolio-zeta.vercel.app/
+
+## Technical optimizations
+- `@web3-react` to handle wallet connections and adding networks
+- `ethereum-multicall` Reduces the amount of calls made to RPC providers.
+- `react-query` Used to create custom fetch hooks, cache data on the client side and refech data when cache is stale
+- `react-table` is being used in conjunction with `react-virtual` to crate reusable, agnostic and headless tables that perform well, reduce the amount of re-renders and can render thousands of rows smoothly.
 
 ## Getting Started
 
-First, run the development server:
+- Clone the repo
+- Install the dependencies
+- Add env variables
+
+To do this, first open a terminal and run the following commands:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+git clone git@github.com:UrbanWill/as-portfolio.git
+cd as-portfolio
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Add `NEXT_PUBLIC_INFURA_PROJECT_ID` envrioment variable to `.env.local` file
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Then, run the development server:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+yarn dev
+```
 
-## Learn More
+Open [http://localhost:3003](http://localhost:3003) with your browser to see the result.
 
-To learn more about Next.js, take a look at the following resources:
+## Storybook components
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-# as-portfolio
+To view component stories, open a terminal and run the following commands:
+```bash
+cd as-portfolio
+yarn storybook
+```
+Open [http://localhost:6006](http://localhost:6006) with your browser to see the result.
